@@ -1,0 +1,27 @@
+#URL
+URL_Doppee : "https://training-platform.doppio-tech.com"
+
+#Test login session with valid data
+test_username : "Wulin_taindi@gmail.com"
+test_password : "Wulin12*"
+test_userID   : "11943"
+
+#Test search session with valid data
+test_pd_id  : "235"
+test_pd_name : "Eoppee phone"
+test_pd_price : 30000.0
+test_pd_promo : null
+test_pd_qty : 4
+
+#Test payment session with valid data
+test_cardnumber : "4111111111111111"
+test_cardexp : "12/2077"
+test_cardcvc : "541"
+test_cardname : "JoyasAterlo"
+test_cardtype : "credit_card"
+test_cardbank : "SCB"
+test_fname : "Doppee"
+test_lname : "Tech"
+test_address : "The office"
+test_phone : "0123456789"
+test_email : "Wulin_taindi@gmail.com"
