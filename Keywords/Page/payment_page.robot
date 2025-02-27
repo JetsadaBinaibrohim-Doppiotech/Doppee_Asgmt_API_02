@@ -1,5 +1,5 @@
 *** Keywords ***
-Verify Payment API Can POST On Data Exist
+Verify Payment Page Load
     [Arguments]    ${login_Token}
     ...            ${user_id}           ${bin}               ${expDate}        ${cvc} 
     ...            ${cardHolderName}    ${payment_type}      ${issuingBank}    ${first_name} 
@@ -26,24 +26,23 @@ Verify Payment API Can POST On Data Exist
     ...                 product_qty=${product_qty}
     ...                 promotion_id=${None}
 
-    Log To Console      ${request_body}
-    
-    ${URL_payment}=      Set Variable                /api/order_submit
-    ${token_headers}=    Create Dictionary           token=${login_token}
 
-    ${post_resp}=        POST On Session
-    ...                  PaymentInfo
-    ...                  ${URL_payment}
-    ...                  headers=${token_headers}
-    ...                  json=${request_body}
-    ...                  expected_status=200
-    
+    ${URL_payment}=      Set Variable         /api/order_submit
+    ${token_headers}=    Create Dictionary    token=${login_token}
+
+    ${post_resp}=    POST On Session
+    ...              PaymentInfo
+    ...              ${URL_payment}
+    ...              headers=${token_headers}
+    ...              json=${request_body}
+    ...              expected_status=200
+
     ${payment_MESSAGE}=        Set Variable    ${post_resp.json()['message']}
     ${payment_ORDERID}=        Set Variable    ${post_resp.json()['order_id']}
     ${payment_STATUS}=         Set Variable    ${post_resp.json()['status']}
     ${payment_TYPE}=           Set Variable    ${post_resp.json()['type']}
     ${total_PRICEmultiply}=    Evaluate        ${original_price} * ${product_qty}
-    Log To Console  ${total_PRICEmultiply}
+
     Should Be Equal    ${post_resp.json()['message']}     order submit success
     Should Be Equal    ${post_resp.json()['order_id']}    ${payment_ORDERID}
     Should Be Equal    ${post_resp.json()['status']}      success

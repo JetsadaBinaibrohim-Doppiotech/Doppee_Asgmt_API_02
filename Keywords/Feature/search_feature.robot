@@ -1,15 +1,22 @@
-***Keywords***
-Verify Search API Can Find Product By Searching Name
-    ${user_TOKEN}          ${user_ID}=                                                       
-    ...                    commom_keyword.Verify Login API Can POST On Data And Get Token
-    ...                    Wulin_taindi@gmail.com
-    ...                    Wulin12*
-    ${total_PRICEminus}    ${product_ID}=                                                    
-    ...                    search_page.Verify Search API Can GET On Data Exist
-    ...                    ${user_TOKEN} 
-    ...                    Doppee phone
-    
-    RETURN                 ${user_TOKEN}
-    ...                    ${user_ID}                                                        
-    ...                    ${total_PRICEminus}                                               
-    ...                    ${product_ID}
+*** Keywords ***
+Verify Search Product Data
+    [Arguments]    ${search_response}
+
+    ${product_PARENT}=        Set Variable                           ${search_response['product']}
+    ${count_PRODUCT}=         Get Length                             ${product_PARENT}
+    ${morethanone}=           Evaluate                               ${count_PRODUCT} > 0
+    Should Be True            ${morethanone}
+
+    ${product_CHILD}=         Get From List                          ${product_PARENT}   0                
+    ${product_CROSSPRICE}=    Get From Dictionary                    ${product_CHILD}    crossOutPrice
+    ${product_ID}=            Get From Dictionary                    ${product_CHILD}    id
+    ${product_DISCOUNT}=      Get From Dictionary                    ${product_CHILD}    discount
+    ${product_NAME}=          Get From Dictionary                    ${product_CHILD}    name
+    ${total_PRICEminus}=      Evaluate                               ${product_CROSSPRICE} - ${product_DISCOUNT}
+
+    Log To Console            Search Page Valid ✅
+    Log To Console            Product ID : ${product_ID}
+    Log To Console            Product Name : ${product_NAME}
+    Log To Console            Product Price : ${total_PRICEminus}    # Already sum minus
+
+    RETURN    ${total_PRICEminus}    ${product_ID}

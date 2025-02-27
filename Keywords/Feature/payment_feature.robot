@@ -14,7 +14,7 @@ Verify Payment API Can Create Order Infomation Complete
     ...                   ${test_cardbank}                                                       
     ...                   ${test_fname}                                                          
     ...                   ${test_lname}                                                          
-    ...                   ${test_address}                                                        
+    ...                   ${test_address}                                                          
     ...                   ${test_phone}                                                          
     ...                   ${test_email}                                                          
     ...                   ${product_ID}                                                          
