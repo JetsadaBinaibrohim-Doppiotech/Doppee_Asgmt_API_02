@@ -1,12 +1,12 @@
 *** Keywords ***
-Verify Payment Page Load
+Verify Create Order ID Success
     [Arguments]    ${login_Token}
     ...            ${user_id}           ${bin}               ${expDate}        ${cvc} 
     ...            ${cardHolderName}    ${payment_type}      ${issuingBank}    ${first_name} 
     ...            ${last_name}         ${shippingAdress}    ${phone}          ${email} 
     ...            ${product_id}        ${original_price}    ${product_qty}    ${promotion_id} 
 
-    Create Session    PaymentInfo    ${URL_Doppee}
+    Create Session    OrderSubmit   ${URL_Doppee}
 
     ${request_body}=    Create Dictionary                   
     ...                 user_id=${user_id}
@@ -31,7 +31,7 @@ Verify Payment Page Load
     ${token_headers}=    Create Dictionary    token=${login_token}
 
     ${post_resp}=    POST On Session
-    ...              PaymentInfo
+    ...              OrderSubmit
     ...              ${URL_payment}
     ...              headers=${token_headers}
     ...              json=${request_body}
@@ -48,7 +48,7 @@ Verify Payment Page Load
     Should Be Equal    ${post_resp.json()['status']}      success
     Should Be Equal    ${post_resp.json()['type']}        order_submit
 
-    Log To Console    Payment Page Valid ✅
+    Log To Console    Order ID Created ✅
     Log To Console    Total Product Summary : ${total_PRICEmultiply}
     Log To Console    OrderID Create : ${payment_ORDERID}
 

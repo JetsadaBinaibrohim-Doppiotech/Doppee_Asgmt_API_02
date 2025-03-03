@@ -1,5 +1,5 @@
 ***Keywords***
-Verify Check Order Page Load
+Check Get Latest Order Information
     [Arguments]    ${login_Token}    ${user_ID}  ${orders_list}
 
     Create Session    CheckOrderID    ${URL_Doppee}

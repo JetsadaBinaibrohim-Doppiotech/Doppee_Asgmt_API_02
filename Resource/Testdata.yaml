@@ -8,7 +8,7 @@ test_userID   : "11943"
 
 #Test search session with valid data
 test_pd_id  : "235"
-test_pd_name : "Eoppee phone"
+test_pd_name : "Doppee phone"
 test_pd_price : 30000.0
 test_pd_promo : null
 test_pd_qty : 4

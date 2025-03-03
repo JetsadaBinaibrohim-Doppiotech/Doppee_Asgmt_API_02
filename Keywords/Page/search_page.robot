@@ -1,5 +1,5 @@
 *** Keywords ***
-Verify Search Page Load
+Verify Can Search Product Name
     [Arguments]    ${login_Token}    ${product_NAME}      
 
     Create Session    SearchProduct    ${URL_Doppee}

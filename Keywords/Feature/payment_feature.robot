@@ -1,10 +1,9 @@
 ***Keywords***
-Verify Payment API Can Create Order Infomation Complete
+Verify Payment Can Create Order Infomation Complete
     ${user_TOKEN}         ${user_ID}                                                             ${total_PRICEminus}        ${product_ID}=
-    ...                   search_feature.Verify Search API Can Find Product By Searching Name
+    ...                   search_feature.Verify Search Product Data Success
     ${payment_ORDERID}    ${total_PRICEmultiply}=
-    ...                   payment_page.Verify Payment API Can POST On Data Exist                 
-    ...                   ${user_TOKEN}                                                          
+    ...                   payment_page.Verify Create Order ID Success
     ...                   ${user_ID}
     ...                   ${test_cardnumber}                                                     
     ...                   ${test_cardexp}                                                        

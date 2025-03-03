@@ -1,5 +1,5 @@
 *** Keywords ***
-Verify Search Product Data
+Verify Search Product Data Success
     [Arguments]    ${search_response}
 
     ${product_PARENT}=        Set Variable                           ${search_response['product']}
@@ -12,11 +12,11 @@ Verify Search Product Data
     ${product_ID}=            Get From Dictionary                    ${product_CHILD}    id
     ${product_DISCOUNT}=      Get From Dictionary                    ${product_CHILD}    discount
     ${product_NAME}=          Get From Dictionary                    ${product_CHILD}    name
-    ${total_PRICEminus}=      Evaluate                               ${product_CROSSPRICE} - ${product_DISCOUNT}
+    ${product_PRICE}=         Get From Dictionary                    ${product_CHILD}    price
 
     Log To Console            Search Page Valid ✅
     Log To Console            Product ID : ${product_ID}
     Log To Console            Product Name : ${product_NAME}
-    Log To Console            Product Price : ${total_PRICEminus}    # Already sum minus
+    Log To Console            Product Price : ${product_PRICE}
 
-    RETURN    ${total_PRICEminus}    ${product_ID}
+    RETURN    ${product_PRICE}    ${product_ID}
